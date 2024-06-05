@@ -4,28 +4,44 @@
 •	后端：Python + Django/Flask + Django Rest Framework (DRF)
 •	前端：vue.js + Axios (用于HTTP请求) + element- UI (用于前端组件)
 
+exam-system-frontend/
+├── node_modules/
+├── public/
+│   ├── favicon.ico
+│   └── index.html
+├── src/
+│   ├── assets/
+│   ├── components/
+│   │   └── HelloWorld.vue
+│   ├── router/
+│   │   └── index.js
+│   ├── services/
+│   │   └── api.js
+│   ├── store/
+│   │   └── index.js
+│   ├── views/
+│   │   ├── Home.vue
+│   │   └── Questions.vue
+│   ├── App.vue
+│   ├── main.js
+├── .gitignore
+├── babel.config.js
+├── package.json
+├── README.md
+└── vue.config.js
+
+
 ## 快速入门
- 运行项目
-确保你已经安装了所需的库：
+运行项目
 
-pip install django djangorestframework django-cors-headers
-创建并应用数据库迁移：
+启动后端 Django 服务器：
+python3 manage.py runserver
 
+启动前端 Vue.js 项目：
+npm run serve
 
-python manage.py makemigrations
-python manage.py migrate
-创建超级用户以访问Django admin界面：
-
-
-python manage.py createsuperuser
-运行开发服务器：
-
-
-python manage.py runserver
-这样，你的Django项目就完成了基础配置，并可以与React前端进行通信。你可以通过http://localhost:8000/admin
-访问Django admin界面，
-通过http://localhost:8000/api/questions/
-访问API端点。
+在浏览器中访问 http://localhost:8080/questions 查看题目列表。
+这样配置后，你的前端 Vue.js 应用可以通过 Axios 调用后端 Django API，并使用 Element UI 展示数据。如果需要进一步定制功能，可以在 Vue 组件中继续扩展。
 
 ## 重建数据库
 
