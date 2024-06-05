@@ -1,5 +1,8 @@
-# SE-big
+![image](https://github.com/cysuna/SE-big/assets/94784880/32e98d0a-33a7-4bb8-9471-d26018522a11)# SE-big
 实验2&amp;大实验
+
+•	后端：Python + Django/Flask + Django Rest Framework (DRF)
+•	前端：vue.js + Axios (用于HTTP请求) + element- UI (用于前端组件)
 
 ## 快速入门
  运行项目
