@@ -19,7 +19,10 @@ python manage.py createsuperuser
 
 
 python manage.py runserver
-这样，你的Django项目就完成了基础配置，并可以与React前端进行通信。你可以通过http://localhost:8000/admin访问Django admin界面，通过http://localhost:8000/api/questions/访问API端点。
+这样，你的Django项目就完成了基础配置，并可以与React前端进行通信。你可以通过http://localhost:8000/admin
+访问Django admin界面，
+通过http://localhost:8000/api/questions/
+访问API端点。
 
 ## 重建数据库
 
