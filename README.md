@@ -1,4 +1,4 @@
-![image](https://github.com/cysuna/SE-big/assets/94784880/32e98d0a-33a7-4bb8-9471-d26018522a11)# SE-big
+# SE-big
 实验2&amp;大实验
 
 •	后端：Python + Django/Flask + Django Rest Framework (DRF)
