@@ -57,6 +57,8 @@ npm run serve
 在浏览器中访问 http://localhost:8080/questions 查看题目列表。
 这样配置后，你的前端 Vue.js 应用可以通过 Axios 调用后端 Django API，并使用 Element UI 展示数据。如果需要进一步定制功能，可以在 Vue 组件中继续扩展。
 
+通过http://localhost:8000/admin访问Django admin界面，通过http://localhost:8000/api/questions/访问API端点。
+
 ## 重建数据库
 
 #### a. 删除现有的 SQLite 数据库文件
