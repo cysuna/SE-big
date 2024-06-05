@@ -8,3 +8,12 @@ router.register(r'questions', QuestionViewSet)
 urlpatterns = [
     path('', include(router.urls)),
 ]
+
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('', views.home, name='home'),
+]
+
+

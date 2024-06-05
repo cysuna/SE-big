@@ -4,7 +4,7 @@
 •	后端：Python + Django/Flask + Django Rest Framework (DRF)
 •	前端：vue.js + Axios (用于HTTP请求) + element- UI (用于前端组件)
 
-exam-system-frontend/
+```exam-system-frontend/
 ├── node_modules/
 ├── public/
 │   ├── favicon.ico
@@ -29,6 +29,20 @@ exam-system-frontend/
 ├── package.json
 ├── README.md
 └── vue.config.js
+```
+```your_project/
+    your_app_name/
+        templates/
+            home.html
+        __init__.py
+        views.py
+        urls.py
+    your_project/
+        __init__.py
+        settings.py
+        urls.py
+        wsgi.py
+    manage.py```
 
 
 ## 快速入门
