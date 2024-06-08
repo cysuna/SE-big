@@ -11,3 +11,5 @@ class QuestionViewSet(viewsets.ModelViewSet):
     
 def home(request):
     return render(request, 'home.html')
+def questions(request):
+    return render(request, 'questions.html')

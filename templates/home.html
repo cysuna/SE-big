@@ -2,9 +2,78 @@
 <html>
 <head>
     <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            color: #666;
+            line-height: 1.6;
+        }
+        .login-button {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to the Home Page!</h1>
-    <p>This is the main page of your Django application.</p>
+    <div class="container">
+        <h1>欢迎来到题库管理与在线考试系统</h1>
+        <p>题库管理：能够录入题目、答案、难易度值等</p>
+        <p>能够处理多种题型：选择题（单选、多选）、判断题、问答题</p>
+        <p>组卷：选择题目构成试卷、重复判断、题目构成分析等</p>
+        <p>权限管理：老师之能维护各自题目，管理员有权组卷等</p>
+        <div class="login-button">
+            <a href="{% url 'login' %}">
+                <button>学生登录</button>
+            </a>
+        </div>
+        <div class="teacher-login-button">
+            <a href="{% url 'teacher_login' %}">
+                <button>教师登录</button>
+            </a>
+        </div>
+        <div class="admin-login-button">
+            <a href="{% url 'admin_login' %}">
+            {% comment %} <a href="/admin/"> {% endcomment %}
+                <button>管理员登录</button>
+            </a>
+        </div>
+        <div class="admin-login-button">
+            {% comment %} <a href="{% url 'admin_login' %}"> {% endcomment %}
+            <a href="/admin/">
+                <button>管理员登录(高级功能)</button>
+            </a>
+        </div>
+    </div>
 </body>
 </html>
