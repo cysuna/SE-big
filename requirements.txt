@@ -1,0 +1,21 @@
+Django==5.0.6
+djangorestframework==3.14.0
+django-cors-headers==3.13.0
+djangorestframework-simplejwt==5.2.2
+django-environ==0.10.0
+
+# 用于数据库操作
+psycopg2-binary==2.9.6  # 如果使用 PostgreSQL 数据库
+mysqlclient==2.1.1  # 如果使用 MySQL 数据库
+sqlite3==3.35.5  # 如果使用 SQLite 数据库
+
+# 用于前端静态文件处理
+whitenoise==6.3.0
+
+# 用于开发和调试
+ipython==8.13.0
+django-debug-toolbar==3.7.0
+
+# 用于测试
+pytest==7.3.1
+pytest-django==4.5.2
