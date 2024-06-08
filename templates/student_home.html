@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+        .logout-button {
+            margin-bottom: 20px;
+        }
+        .exam-selection {
+            margin-top: 20px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 14px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>学生主页</h1>
+        <div class="logout-button">
+            <a href="{% url 'logout' %}" class="button">退出登录</a>
+        </div>
+        <div class="exam-selection">
+            <form method="get" action="{% url 'do_exam' 0 %}">
+                <label for="exam">选择考试:</label>
+                <select name="exam_id" id="exam">
+                    {% for exam in exams %}
+                    <option value="{{ exam.id }}">{{ exam.title }}</option>
+                    {% endfor %}
+                </select>
+                <button type="submit" class="button">确定</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

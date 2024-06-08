@@ -1,0 +1,86 @@
+{% comment %} <!DOCTYPE html>
+<html>
+<head>
+    <title>Do Exam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ exam.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in exam.questions.all %}
+        <div class="question">
+            <h3>{{ question.question_text }}</h3>
+            {% if question.question_type == 'true_false' %}
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="yes"> Yes
+            </label>
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="no"> No
+            </label>
+            {% elif question.question_type == 'short_answer' %}
+            <input type="text" name="question_{{ question.id }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html> {% endcomment %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Do Exam</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ exam.title }}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for question in exam.questions.all %}
+        <div class="question">
+            <h3>{{ question.question_text }}</h3>
+            {% if question.question_type == 'true_false' %}
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="yes"> Yes
+            </label>
+            <label>
+                <input type="radio" name="question_{{ question.id }}" value="no"> No
+            </label>
+            {% elif question.question_type == 'short_answer' %}
+            <input type="text" name="question_{{ question.id }}">
+            {% endif %}
+        </div>
+        {% endfor %}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

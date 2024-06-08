@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Exam List</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        .exam {
+            margin-bottom: 20px;
+        }
+        .exam h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Exam List</h1>
+    <ul>
+        {% for exam in exams %}
+        <li>
+            <a href="{% url 'do_exam' exam.id %}">{{ exam.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

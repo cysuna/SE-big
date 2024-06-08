@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Question List</title>
+</head>
+<body>
+    <h1>Questions</h1>
+    <div id="question-list"></div>
+    <script>
+        fetch('/login/questions/')
+            .then(response => response.json())
+            .then(data => {
+                const questionList = document.getElementById('question-list');
+                data.forEach(question => {
+                    const div = document.createElement('div');
+                    div.textContent = `${question.id}: ${question.question_text} - ${question.question_type} - ${question.difficulty} - ${question.answer}`;
+                    questionList.appendChild(div);
+                });
+            });
+    </script>
+</body>
+</html>

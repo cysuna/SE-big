@@ -9,7 +9,7 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            return redirect('questions')  # 重定向到做题界面
+            return redirect('student_home')  # 重定向到做题界面
         else:
             messages.error(request, '用户名或密码错误')
             return render(request, 'login.html')
