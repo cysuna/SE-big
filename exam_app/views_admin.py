@@ -33,7 +33,7 @@ def add_teacher(request):
         form = TeacherForm(request.POST)
         if form.is_valid():
             teacher = form.save()
-            teacher_group = Group.objects.get(name='Teachers')
+            teacher_group, created = Group.objects.get_or_create(name='Teachers')
             teacher.groups.add(teacher_group)
             return redirect('admin_home')
     else:
