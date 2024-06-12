@@ -26,7 +26,7 @@ from .views import QuestionViewSet, questions, question_list, \
     exam_list, do_exam, create_exam
 from .views_auth import login, teacher_login, admin_login
 from .views_teacher import teacher_home, create_question, edit_question, delete_question, create_exam
-from .views_admin import admin_home, add_teacher, edit_teacher, delete_teacher, add_question, edit_question, delete_question
+from .views_admin import admin_home, add_teacher, add_student, edit_teacher, delete_teacher, add_question, edit_question, delete_question
 from .views_student import student_home, do_exam, logout_view, exam_result
 router = DefaultRouter()
 router.register(r'questions', QuestionViewSet)
@@ -61,4 +61,6 @@ urlpatterns = [
     path('student/exam_result/<int:score>/', exam_result, name='exam_result'),
     re_path(r'^student/exam_result/(?P<score>\d+(\.\d+)?)/$', exam_result, name='exam_result'),
     path('logout/', logout_view, name='logout'),
+    path('student_register/', add_student, name='student_register'),
+
 ]

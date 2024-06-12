@@ -10,6 +10,11 @@ class TeacherForm(UserCreationForm):
         model = User
         fields = ['username', 'email', 'password1', 'password2']
 
+class StudentForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+
 class QuestionForm(forms.ModelForm):
     class Meta:
         model = Question
@@ -40,6 +45,19 @@ def add_teacher(request):
         form = TeacherForm()
     
     return render(request, 'add_teacher.html', {'form': form})
+
+def add_student(request):
+    if request.method == 'POST':
+        form = StudentForm(request.POST)
+        if form.is_valid():
+            student = form.save()
+            student_group, created = Group.objects.get_or_create(name='Students')
+            student.groups.add(student_group)
+            return redirect('home')
+    else:
+        form = StudentForm()
+    
+    return render(request, 'add_student.html', {'form': form})
 
 @login_required
 def edit_teacher(request, teacher_id):

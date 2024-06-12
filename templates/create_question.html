@@ -10,7 +10,49 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Save</button>
+        <button type="submit">Create</button>
     </form>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var questionTypeSelect = document.getElementById("id_question_type");
+            var choice1Field = document.getElementById("div_id_choice1");
+            var choice2Field = document.getElementById("div_id_choice2");
+            var choice3Field = document.getElementById("div_id_choice3");
+            var choice4Field = document.getElementById("div_id_choice4");
+            var true_false = document.getElementById("div_id_true_false");
+            var answerField = document.getElementById("div_id_answer");
+            var correctChoicesField = document.getElementById("div_id_correct_choices");
+
+            function updateFields() {
+                var questionType = questionTypeSelect.value;
+                if (questionType === "single_choice" || questionType === "multiple_choice") {
+                    choice1Field.style.display = "block";
+                    choice2Field.style.display = "block";
+                    choice3Field.style.display = "block";
+                    choice4Field.style.display = "block";
+                    answerField.style.display = "none";
+                    correctChoicesField.style.display = "block";
+                } else if (questionType === "true_false") {
+                    choice1Field.style.display = "none";
+                    choice2Field.style.display = "none";
+                    choice3Field.style.display = "none";
+                    choice4Field.style.display = "none";
+                    answerField.style.display = "none";
+                    correctChoicesField.style.display = "block";
+                } else if (questionType === "short_answer") {
+                    choice1Field.style.display = "none";
+                    choice2Field.style.display = "none";
+                    choice3Field.style.display = "none";
+                    choice4Field.style.display = "none";
+                    correctChoicesField.style.display = "none";
+                    answerField.style.display = "block";
+                }
+            }
+
+            questionTypeSelect.addEventListener("change", updateFields);
+            updateFields();  // 初始化调用以设置字段的初始状态
+        });
+    </script>
 </body>
 </html>

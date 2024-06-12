@@ -59,6 +59,14 @@ npm run serve
 
 通过http://localhost:8000/admin访问Django admin界面，通过http://localhost:8000/api/questions/访问API端点。
 
+```
+rm db.sqlite3
+rm exam_app/migrations/0*.py
+python3 manage.py makemigrations exam_app
+python3 manage.py migrate
+python3 manage.py createsuperuser
+```
+
 ## 重建数据库
 
 #### a. 删除现有的 SQLite 数据库文件
@@ -96,6 +104,8 @@ python manage.py migrate
 ### 2. 检查模型和迁移文件的一致性
 
 确保 `exam_app/models.py` 文件和迁移文件之间没有不一致的地方。例如，确保模型定义正确，并且所有字段都符合要求。
+
+python3 manage.py createsuperuser
 
 ### 3. 确认模型定义
 
@@ -215,3 +225,5 @@ MIDDLEWARE = [
 ```bash
 python manage.py runserver
 ```
+
+
