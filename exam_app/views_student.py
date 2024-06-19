@@ -18,8 +18,25 @@ def do_exam(request, exam_id=None):
         correct_answers = 0
         for question in exam.questions.all():
             user_answer = request.POST.get(f'question_{question.id}')
-            if user_answer and user_answer.lower() == question.answer.lower():
-                correct_answers += 1
+            logger.debug(f'Question ID: {question.id}, User Answer: {user_answer}')
+            if user_answer is not None:
+                if question.question_type == 'single_choice':
+                    if user_answer.lower() == question.answer.lower():
+                        correct_answers += 1
+                elif question.question_type == 'multiple_choice':
+                    user_choices = request.POST.getlist(f'question_{question.id}')
+                    if set(user_choices) == set(question.correct_choices):
+                        correct_answers += 1
+                elif question.question_type == 'true_false':
+                    if user_answer.lower() == question.answer.lower():
+                        correct_answers += 1
+                elif question.question_type == 'short_answer':
+                    if user_answer.lower() == question.answer.lower():
+                        correct_answers += 1
+                else:
+                    print(f'Unknown question type for question ID {question.id}')
+            else:
+                print(f'User answer for question ID {question.id} is None')
         score = (correct_answers / total_questions) * 100
         return redirect('exam_result', score=round(score, 2))
     return render(request, 'do_exam.html', {'exam': exam})
