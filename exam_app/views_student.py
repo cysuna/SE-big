@@ -18,7 +18,6 @@ def do_exam(request, exam_id=None):
         correct_answers = 0
         for question in exam.questions.all():
             user_answer = request.POST.get(f'question_{question.id}')
-            logger.debug(f'Question ID: {question.id}, User Answer: {user_answer}')
             if user_answer is not None:
                 if question.question_type == 'single_choice':
                     if user_answer.lower() == question.answer.lower():
