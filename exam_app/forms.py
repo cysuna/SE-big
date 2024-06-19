@@ -27,31 +27,31 @@ class QuestionForm(forms.ModelForm):
         super(QuestionForm, self).__init__(*args, **kwargs)
         question_type = self.instance.question_type if self.instance else 'short_answer'
         if question_type in ['single_choice', 'multiple_choice']:
-
+            pass
             # self.fields['true_false'].widget = forms.HiddenInput()
         elif question_type == 'true_false':
-            self.widget['answer'] = forms.Select(choices=[('true', 'True'), ('false', 'False')])
-            self.widget['correct_choices'] = forms.HiddenInput()
-            self.widget['choice1'] = forms.HiddenInput()
-            self.widget['choice2'] = forms.HiddenInput()
-            self.widget['choice3'] = forms.HiddenInput()
-            self.widget['choice4'] = forms.HiddenInput()
+            self.fields['answer'].widgets = forms.Select(choices=[('true', 'True'), ('false', 'False')])
+            self.fields['correct_choices'].widgets = forms.HiddenInput()
+            self.fields['choice1'].widgets = forms.HiddenInput()
+            self.fields['choice2'].widgets = forms.HiddenInput()
+            self.fields['choice3'].widgets = forms.HiddenInput()
+            self.fields['choice4'].widgets = forms.HiddenInput()
         elif question_type == 'short_answer':
-            self.widget['correct_choices'] = forms.HiddenInput()
-            self.widget['choice1'] = forms.HiddenInput()
-            self.widget['choice2'] = forms.HiddenInput()
-            self.widget['choice3'] = forms.HiddenInput()
-            self.widget['choice4'] = forms.HiddenInput()
+            self.fields['correct_choices'].widgets = forms.HiddenInput()
+            self.fields['choice1'].widgets = forms.HiddenInput()
+            self.fields['choice2'].widgets = forms.HiddenInput()
+            self.fields['choice3'].widgets = forms.HiddenInput()
+            self.fields['choice4'].widgets = forms.HiddenInput()
             # self.fields['true_false'].widget = forms.HiddenInput()
 
         else:
-            self.widget['correct_choices'] = forms.CheckboxSelectMultiple(choices=[
+            self.fields['correct_choices'].widgets = forms.CheckboxSelectMultiple(choices=[
                 ('choice1', 'Choice 1'),
                 ('choice2', 'Choice 2'),
                 ('choice3', 'Choice 3'),
                 ('choice4', 'Choice 4'),
             ])
-            self.widget['true_false'] = forms.CheckboxSelectMultiple(choices=[
+            self.fields['true_false'].widgets = forms.CheckboxSelectMultiple(choices=[
                 ('true', 'true'),
                 ('false', 'false'),
             ])
