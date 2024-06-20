@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Select Question Type</title>
+</head>
+<body>
+    <h1>Select Question Type</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label>
+            <input type="radio" name="question_type" value="single_choice"> Single Choice
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="question_type" value="multiple_choice"> Multiple Choice
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="question_type" value="true_false"> True/False
+        </label>
+        <br>
+        <label>
+            <input type="radio" name="question_type" value="short_answer"> Short Answer
+        </label>
+        <br>
+        <button type="submit">Next</button>
+    </form>
+</body>
+</html>

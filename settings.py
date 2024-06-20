@@ -129,3 +129,6 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',  # React.js 开发服务器地址
     'http://127.0.0.1:3000',
 ]
+
+SESSION_COOKIE_AGE = 1209600  # 设置会话持续时间
+SESSION_SAVE_EVERY_REQUEST = True  # 每次请求都保存会话

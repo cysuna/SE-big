@@ -21,6 +21,8 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
         }
         h1 {
             color: #333;
@@ -50,17 +52,17 @@
         .button:hover {
             background-color: #4cae4c;
         }
-        .back-button {
+        .logout-button {
             padding: 10px 20px;
-            background-color: #337ab7;
+            background-color: #d9534f;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
         }
-        .back-button:hover {
-            background-color: #286090;
+        .logout-button:hover {
+            background-color: #c9302c;
         }
     </style>
 </head>
@@ -94,7 +96,7 @@
         </table>
         
         <h2>题目管理</h2>
-        <a href="{% url 'add_question' %}">
+        <a href="{% url 'choose_question_type' %}">
             <button class="button">添加题目</button>
         </a>
         <table>
@@ -107,25 +109,81 @@
                 </tr>
             </thead>
             <tbody>
-                {% for question in questions %}
+                {% for question in single_choice_questions %}
                 <tr>
                     <td>{{ question.question_text }}</td>
-                    <td>{{ question.question_type }}</td>
+                    <td>单选题</td>
                     <td>{{ question.difficulty }}</td>
                     <td>
-                        <a href="{% url 'edit_question' question.id %}">编辑</a> |
-                        <a href="{% url 'delete_question' question.id %}">删除</a>
+                        <a href="{% url 'edit_question' question.id 'single_choice' %}">编辑</a> |
+                        <a href="{% url 'delete_question' question.id 'single_choice' %}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for question in multiple_choice_questions %}
+                <tr>
+                    <td>{{ question.question_text }}</td>
+                    <td>多选题</td>
+                    <td>{{ question.difficulty }}</td>
+                    <td>
+                        <a href="{% url 'edit_question' question.id 'multiple_choice' %}">编辑</a> |
+                        <a href="{% url 'delete_question' question.id 'multiple_choice' %}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for question in true_false_questions %}
+                <tr>
+                    <td>{{ question.question_text }}</td>
+                    <td>判断题</td>
+                    <td>{{ question.difficulty }}</td>
+                    <td>
+                        <a href="{% url 'edit_question' question.id 'true_false' %}">编辑</a> |
+                        <a href="{% url 'delete_question' question.id 'true_false' %}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% for question in short_answer_questions %}
+                <tr>
+                    <td>{{ question.question_text }}</td>
+                    <td>简答题</td>
+                    <td>{{ question.difficulty }}</td>
+                    <td>
+                        <a href="{% url 'edit_question' question.id 'short_answer' %}">编辑</a> |
+                        <a href="{% url 'delete_question' question.id 'short_answer' %}">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
-        <button class="back-button" onclick="goBack()">退出登录</button>
+
+        <h2>试卷管理</h2>
+        <a href="{% url 'create_exam' %}">
+            <button class="button">添加试卷</button>
+        </a>
+        <table>
+            <thead>
+                <tr>
+                    <th>试卷标题</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for exam in exams %}
+                <tr>
+                    <td>{{ exam.title }}</td>
+                    <td>
+                        <a href="{% url 'edit_exam' exam.id %}">编辑</a> |
+                        <a href="{% url 'delete_exam' exam.id %}">删除</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">退出登录</button>
+        </form>
     </div>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>

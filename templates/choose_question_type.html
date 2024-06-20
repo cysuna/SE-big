@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Home</title>
+    <title>Choose Question Type</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -9,29 +9,29 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
             background-color: #f4f4f4;
         }
         .container {
-            max-width: 800px;
-            margin: 0 auto;
+            text-align: center;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 400px;
         }
         h1 {
             color: #333;
         }
-        .exam-list {
-            list-style: none;
-            padding: 0;
-        }
-        .exam-item {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
         .button {
+            display: inline-block;
             padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
             color: white;
             background-color: #007BFF;
             border: none;
@@ -46,17 +46,11 @@
 </head>
 <body>
     <div class="container">
-        <h1>学生主页</h1>
-        <a href="{% url 'logout' %}" class="button" style="background-color: #dc3545;">注销</a>
-        <h2>选择考试</h2>
-        <ul class="exam-list">
-            {% for exam in exams %}
-                <li class="exam-item">
-                    {{ exam.title }}
-                    <a href="{% url 'do_exam' exam.id %}" class="button">开始考试</a>
-                </li>
-            {% endfor %}
-        </ul>
+        <h1>选择题目类型</h1>
+        <a href="{% url 'create_single_choice_question' %}" class="button">单选题</a>
+        <a href="{% url 'create_multiple_choice_question' %}" class="button">多选题</a>
+        <a href="{% url 'create_true_false_question' %}" class="button">判断题</a>
+        <a href="{% url 'create_short_answer_question' %}" class="button">简答题</a>
     </div>
 </body>
 </html>
