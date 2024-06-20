@@ -25,6 +25,10 @@
             max-width: 600px;
             text-align: center;
         }
+        a {
+            text-decoration: none;
+
+        }
         h1 {
             color: #333;
             text-align: center;
@@ -47,6 +51,13 @@
         .button:hover {
             background-color: #0056b3;
         }
+        .back-button {
+            width: 100%;
+            background-color: #d9534f;
+        }
+        .back-button:hover {
+            background-color: #c9302c;
+        }
     </style>
 </head>
 <body>
@@ -56,6 +67,8 @@
         <a href="{% url 'create_multiple_choice_question' %}" class="button">多选题</a>
         <a href="{% url 'create_true_false_question' %}" class="button">判断题</a>
         <a href="{% url 'create_short_answer_question' %}" class="button">简答题</a>
+        <a href="{% url 'admin_home' %}"><button class="button back-button">回到管理员主页</button></a>
+
     </div>
 </body>
 </html>

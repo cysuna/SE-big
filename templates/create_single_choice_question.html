@@ -76,6 +76,9 @@
         .back-button:hover {
             background-color: #c9302c;
         }
+        a {
+            text-decoration: none;
+        }
         form {
             display: flex;
             flex-direction: column;
@@ -101,28 +104,25 @@
                 {{ form.question_text }}
             </div>
             <div class="form-group">
-                <label for="id_choice1">选项 A</label>
+                <label for="id_choice1">选项 1</label>
                 {{ form.choice1 }}
             </div>
             <div class="form-group">
-                <label for="id_choice2">选项 B</label>
+                <label for="id_choice2">选项 2</label>
                 {{ form.choice2 }}
             </div>
             <div class="form-group">
-                <label for="id_choice3">选项 C</label>
+                <label for="id_choice3">选项 3</label>
                 {{ form.choice3 }}
             </div>
             <div class="form-group">
-                <label for="id_choice4">选项 D</label>
+                <label for="id_choice4">选项 4</label>
                 {{ form.choice4 }}
             </div>
             <div class="form-group">
                 <label for="id_correct_choice">正确选项</label>
                 <div class="radio-group">
-                    <label><input type="radio" name="correct_choice" value="0"> 选项 A</label>
-                    <label><input type="radio" name="correct_choice" value="1"> 选项 B</label>
-                    <label><input type="radio" name="correct_choice" value="2"> 选项 C</label>
-                    <label><input type="radio" name="correct_choice" value="3"> 选项 D</label>
+                    {{ form.correct_choice }}
                 </div>
             </div>
             <div class="form-group">
@@ -131,12 +131,8 @@
             </div>
             <button type="submit">保存</button>
         </form>
-        <button class="back-button" onclick="goBack()">回到主页</button>
+        <a href="{% url 'admin_home' %}"><button class="back-button"">回到管理员主页</button></a>
+
     </div>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
 </body>
 </html>
