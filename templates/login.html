@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Login Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -33,35 +33,41 @@
         }
         input[type="text"],
         input[type="password"] {
-            width: calc(100% - 20px);
+            width: calc(100% - 40px); /* Adjusted for padding */
             padding: 10px;
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         button {
-            width: calc(100% - 20px);
+            width: calc(100% - 40px); /* Adjusted for padding */
             padding: 10px 20px;
+            margin-top: 10px; /* Added margin-top for spacing */
             background-color: #5cb85c;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         button:hover {
             background-color: #4cae4c;
         }
         .back-button {
-            width: calc(100% - 20px);
-            margin-top: 10px;
+            width: calc(100% - 40px); /* Adjusted for padding */
             padding: 10px 20px;
+            margin-top: 10px; /* Added margin-top for spacing */
             background-color: #337ab7;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             font-size: 16px;
+            transition: background-color 0.3s;
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         .back-button:hover {
             background-color: #286090;
@@ -71,11 +77,23 @@
             flex-direction: column;
             align-items: center;
         }
+        .link-button {
+            margin-top: 20px; /* Adjusted margin for better spacing */
+        }
+        .link-button a {
+            text-decoration: none;
+            color: #337ab7;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .link-button a:hover {
+            color: #286090;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>登录</h1>
+        <h1>学生登录</h1>
         {% if messages %}
             {% for message in messages %}
                 <div class="error">{{ message }}</div>
