@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Admin Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Home Page</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -11,21 +11,26 @@
             padding: 0;
             display: flex;
             justify-content: center;
-            align-items: center;
-            height: 100vh;
             background-color: #f4f4f4;
         }
         .container {
-            text-align: center;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 80%;
             max-width: 800px;
+            position: relative;
         }
         h1 {
             color: #333;
+            text-align: center;
+        }
+        h2 {
+            text-align: left;
+            margin-top: 40px; /* 增加模块间距 */
+            border-bottom: 2px solid #f2f2f2; /* 增加底部边框 */
+            padding-bottom: 10px; /* 增加底部填充 */
         }
         table {
             width: 100%;
@@ -48,9 +53,20 @@
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
+            text-align: left;
+            display: inline-block;
+            text-decoration: none;
         }
         .button:hover {
             background-color: #4cae4c;
+        }
+        .edit-link, .delete-link {
+            text-decoration: none;
+            color: #337ab7;
+            margin-right: 8px;
+        }
+        .edit-link:hover, .delete-link:hover {
+            text-decoration: underline;
         }
         .logout-button {
             padding: 10px 20px;
@@ -59,20 +75,28 @@
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            margin-top: 10px;
+            position: absolute;
+            top: 20px;
+            right: 20px;
         }
         .logout-button:hover {
             background-color: #c9302c;
+        }
+        .add-button {
+            margin-bottom: 20px;
+            display: block;
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">退出登录</button>
+        </form>
         <h1>管理员主页</h1>
         <h2>教师管理</h2>
-        <a href="{% url 'add_teacher' %}">
-            <button class="button">添加教师</button>
-        </a>
+        <a href="{% url 'add_teacher' %}" class="button add-button">添加教师</a>
         <table>
             <thead>
                 <tr>
@@ -87,8 +111,8 @@
                     <td>{{ teacher.username }}</td>
                     <td>{{ teacher.email }}</td>
                     <td>
-                        <a href="{% url 'edit_teacher' teacher.id %}">编辑</a> |
-                        <a href="{% url 'delete_teacher' teacher.id %}">删除</a>
+                        <a href="{% url 'edit_teacher' teacher.id %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_teacher' teacher.id %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -96,9 +120,7 @@
         </table>
         
         <h2>题目管理</h2>
-        <a href="{% url 'choose_question_type' %}">
-            <button class="button">添加题目</button>
-        </a>
+        <a href="{% url 'choose_question_type' %}" class="button add-button">添加题目</a>
         <table>
             <thead>
                 <tr>
@@ -115,8 +137,8 @@
                     <td>单选题</td>
                     <td>{{ question.difficulty }}</td>
                     <td>
-                        <a href="{% url 'edit_question' question.id 'single_choice' %}">编辑</a> |
-                        <a href="{% url 'delete_question' question.id 'single_choice' %}">删除</a>
+                        <a href="{% url 'edit_question' question.id 'single_choice' %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_question' question.id 'single_choice' %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -126,8 +148,8 @@
                     <td>多选题</td>
                     <td>{{ question.difficulty }}</td>
                     <td>
-                        <a href="{% url 'edit_question' question.id 'multiple_choice' %}">编辑</a> |
-                        <a href="{% url 'delete_question' question.id 'multiple_choice' %}">删除</a>
+                        <a href="{% url 'edit_question' question.id 'multiple_choice' %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_question' question.id 'multiple_choice' %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -137,8 +159,8 @@
                     <td>判断题</td>
                     <td>{{ question.difficulty }}</td>
                     <td>
-                        <a href="{% url 'edit_question' question.id 'true_false' %}">编辑</a> |
-                        <a href="{% url 'delete_question' question.id 'true_false' %}">删除</a>
+                        <a href="{% url 'edit_question' question.id 'true_false' %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_question' question.id 'true_false' %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -148,8 +170,8 @@
                     <td>简答题</td>
                     <td>{{ question.difficulty }}</td>
                     <td>
-                        <a href="{% url 'edit_question' question.id 'short_answer' %}">编辑</a> |
-                        <a href="{% url 'delete_question' question.id 'short_answer' %}">删除</a>
+                        <a href="{% url 'edit_question' question.id 'short_answer' %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_question' question.id 'short_answer' %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
@@ -157,9 +179,7 @@
         </table>
 
         <h2>试卷管理</h2>
-        <a href="{% url 'create_exam' %}">
-            <button class="button">添加试卷</button>
-        </a>
+        <a href="{% url 'create_exam' %}" class="button add-button">添加试卷</a>
         <table>
             <thead>
                 <tr>
@@ -172,18 +192,15 @@
                 <tr>
                     <td>{{ exam.title }}</td>
                     <td>
-                        <a href="{% url 'edit_exam' exam.id %}">编辑</a> |
-                        <a href="{% url 'delete_exam' exam.id %}">删除</a>
+                        <a href="{% url 'edit_exam' exam.id %}" class="edit-link">编辑</a>
+                        <a href="{% url 'delete_exam' exam.id %}" class="delete-link">删除</a>
                     </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         
-        <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="logout-button">退出登录</button>
-        </form>
+        
     </div>
 </body>
 </html>
