@@ -1,36 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Choose Question Type</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>选择题目类型</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            padding: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             background-color: #f4f4f4;
+            font-size: 21px;
         }
         .container {
-            text-align: center;
             background: white;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             width: 80%;
-            max-width: 400px;
+            max-width: 600px;
+            text-align: center;
         }
         h1 {
             color: #333;
+            text-align: center;
+            margin-bottom: 50px;
         }
         .button {
-            display: inline-block;
+            display: block;
+            width: calc(100% - 40px);
             padding: 10px 20px;
-            margin: 10px;
+            margin: 10px auto;
             font-size: 16px;
             color: white;
             background-color: #007BFF;
@@ -38,6 +42,7 @@
             border-radius: 4px;
             cursor: pointer;
             text-decoration: none;
+            text-align: center;
         }
         .button:hover {
             background-color: #0056b3;
