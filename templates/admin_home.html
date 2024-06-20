@@ -95,9 +95,8 @@
 <body>    
     <div class="container">
         <form method="post" action="{% url 'logout' %}">
-            {% comment %} {% csrf_token %}
-            <button type="submit" class="logout-button">退出登录</button> {% endcomment %}
-            <a href="{% url 'home' %}" class="button add-button">退出登录</a>
+            {% csrf_token %}
+            <button type="submit" class="logout-button">退出登录</button>
         </form>
         <h1>管理员主页</h1>
         <h2>教师管理</h2>
