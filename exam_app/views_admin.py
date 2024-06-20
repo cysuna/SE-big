@@ -248,5 +248,5 @@ def delete_exam(request, exam_id):
 def choose_question_type(request):
     if not request.user.is_staff:
         return redirect('home')
-    return render(request, 'choose_question_type.html')
+    return render(request, 'choose_question_type_admin.html')
 

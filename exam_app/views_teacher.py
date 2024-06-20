@@ -33,7 +33,7 @@ def create_question(request):
             return redirect('create_true_false_question')
         elif question_type == 'short_answer':
             return redirect('create_short_answer_question')
-    return render(request, 'choose_question_type.html')
+    return render(request, 'choose_question_type_teacher.html')
 
 @login_required
 def create_single_choice_question(request):

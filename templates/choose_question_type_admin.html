@@ -63,11 +63,10 @@
 <body>
     <div class="container">
         <h1>选择题目类型</h1>
-        <a href="{% url 'create_single_choice_question' %}" class="button">单选题</a>
-        <a href="{% url 'create_multiple_choice_question' %}" class="button">多选题</a>
-        <a href="{% url 'create_true_false_question' %}" class="button">判断题</a>
-        <a href="{% url 'create_short_answer_question' %}" class="button">简答题</a>
-        <a href="{% url 'admin_home' %}"><button class="button back-button">回到管理员主页</button></a>
+        <a href="{% url 'add_single_choice_question' %}" class="button">单选题</a>
+        <a href="{% url 'add_multiple_choice_question' %}" class="button">多选题</a>
+        <a href="{% url 'add_true_false_question' %}" class="button">判断题</a>
+        <a href="{% url 'add_short_answer_question' %}" class="button">简答题</a>
 
     </div>
 </body>
