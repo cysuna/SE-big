@@ -1,49 +1,56 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
-    <title>Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>题库管理与在线考试系统</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
         }
         .container {
-            text-align: center;
-            background: white;
+            max-width: 600px;
+            margin: 20px auto;
+            background-color: #ffffff;
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center align content */
         }
         h1 {
-            color: #333;
+            color: #333333;
+            margin-bottom: 20px;
         }
         p {
-            color: #666;
-            line-height: 1.6;
+            color: #555555;
+            margin-bottom: 10px;
         }
-        .login-button {
-            margin-top: 20px;
+        .login-button, .admin-login-button, .teacher-login-button {
+            margin: 10px 0; /* Equal vertical margin */
         }
         button {
-            padding: 10px 20px;
-            background-color: #5cb85c;
+            background-color: #4CAF50;
             color: white;
             border: none;
-            border-radius: 4px;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
             cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            width: 100%; /* Make buttons equal width */
+            max-width: 200px; /* Limit maximum width */
+            box-sizing: border-box; /* Include padding in width calculation */
         }
         button:hover {
-            background-color: #4cae4c;
+            background-color: #45a049;
         }
-    </style>
+    </style>    
 </head>
 <body>
     <div class="container">
@@ -69,12 +76,10 @@
         </div>
         <div class="admin-login-button">
             <a href="{% url 'admin_login' %}">
-            {% comment %} <a href="/admin/"> {% endcomment %}
                 <button>管理员登录</button>
             </a>
         </div>
         <div class="admin-login-button">
-            {% comment %} <a href="{% url 'admin_login' %}"> {% endcomment %}
             <a href="/admin/">
                 <button>管理员登录(高级功能)</button>
             </a>
