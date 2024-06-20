@@ -96,7 +96,7 @@ def add_student(request):
             student = form.save()
             student_group, created = Group.objects.get_or_create(name='Students')
             student.groups.add(student_group)
-            return redirect('admin_home')
+            return redirect('home')
     else:
         form = StudentForm()
     

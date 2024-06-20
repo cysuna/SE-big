@@ -12,6 +12,10 @@
             display: flex;
             justify-content: center;
             background-color: #f4f4f4;
+            background-image: url('./background1.png'); /* 添加背景图片 */
+            background-size: cover; /* 使背景图片覆盖整个页面 */
+            background-position: center; /* 背景图片居中对齐 */
+            background-repeat: no-repeat; /* 防止背景图片重复 */
         }
         .container {
             background: white;
@@ -88,11 +92,12 @@
         }
     </style>
 </head>
-<body>
+<body>    
     <div class="container">
         <form method="post" action="{% url 'logout' %}">
-            {% csrf_token %}
-            <button type="submit" class="logout-button">退出登录</button>
+            {% comment %} {% csrf_token %}
+            <button type="submit" class="logout-button">退出登录</button> {% endcomment %}
+            <a href="{% url 'home' %}" class="button add-button">退出登录</a>
         </form>
         <h1>管理员主页</h1>
         <h2>教师管理</h2>
