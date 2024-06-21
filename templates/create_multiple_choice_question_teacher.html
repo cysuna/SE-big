@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加单选题</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-size: 18px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+        }
+        a {
+            text-decoration: none;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 30%;
+            color: #333;
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 65%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 24px;
+            font-size: 18px;
+        }
+        .form-group textarea {
+            height: auto;
+            resize: vertical;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .back-button {
+            background-color: #d9534f;
+        }
+        .back-button:hover {
+            background-color: #c9302c;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .radio-group label {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>添加多选题</h1>
+        <form method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_question_text">题目</label>
+                {{ form.question_text }}
+            </div>
+            <div class="form-group">
+                <label for="id_choice1">选项 1</label>
+                {{ form.choice1 }}
+            </div>
+            <div class="form-group">
+                <label for="id_choice2">选项 2</label>
+                {{ form.choice2 }}
+            </div>
+            <div class="form-group">
+                <label for="id_choice3">选项 3</label>
+                {{ form.choice3 }}
+            </div>
+            <div class="form-group">
+                <label for="id_choice4">选项 4</label>
+                {{ form.choice4 }}
+            </div>
+            <div class="form-group">
+                <label for="id_correct_choices">正确选项</label>
+                {{ form.correct_choices }}
+            </div>
+            <div class="form-group">
+                <label for="id_difficulty">难度</label>
+                {{ form.difficulty }}
+            </div>
+            <button type="submit">保存</button>
+        </form>
+        <a href="{% url 'teacher_home' %}"><button class="back-button"">回到教师主页</button></a>
+
+    </div>
+</body>
+</html>

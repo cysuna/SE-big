@@ -78,12 +78,12 @@ def create_single_choice_question(request):
         form = SingleChoiceQuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.created_by = request.user  # 设置 created_by 字段
+            question.created_by = request.user
             question.save()
             return redirect('teacher_home')
     else:
         form = SingleChoiceQuestionForm()
-    return render(request, 'create_single_choice_question.html', {'form': form})
+    return render(request, 'create_single_choice_question_teacher.html', {'form': form})
 
 @login_required
 def create_multiple_choice_question(request):
@@ -91,12 +91,12 @@ def create_multiple_choice_question(request):
         form = MultipleChoiceQuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.created_by = request.user  # 设置 created_by 字段
+            question.created_by = request.user
             question.save()
             return redirect('teacher_home')
     else:
         form = MultipleChoiceQuestionForm()
-    return render(request, 'create_multiple_choice_question.html', {'form': form})
+    return render(request, 'create_multiple_choice_question_teacher.html', {'form': form})
 
 @login_required
 def create_true_false_question(request):
@@ -104,12 +104,12 @@ def create_true_false_question(request):
         form = TrueFalseQuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.created_by = request.user  # 设置 created_by 字段
+            question.created_by = request.user
             question.save()
             return redirect('teacher_home')
     else:
         form = TrueFalseQuestionForm()
-    return render(request, 'create_true_false_question.html', {'form': form})
+    return render(request, 'create_true_false_question_teacher.html', {'form': form})
 
 @login_required
 def create_short_answer_question(request):
@@ -117,12 +117,12 @@ def create_short_answer_question(request):
         form = ShortAnswerQuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            question.created_by = request.user  # 设置 created_by 字段
+            question.created_by = request.user
             question.save()
             return redirect('teacher_home')
     else:
         form = ShortAnswerQuestionForm()
-    return render(request, 'create_short_answer_question.html', {'form': form})
+    return render(request, 'create_short_answer_question_teacher.html', {'form': form})
 
 class SingleChoiceQuestionViewSet(viewsets.ModelViewSet):
     queryset = SingleChoiceQuestion.objects.all()
