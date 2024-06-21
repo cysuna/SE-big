@@ -61,7 +61,7 @@ def do_exam(request, exam_id=None):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('home')
 
 @login_required
 def exam_result(request, score):
