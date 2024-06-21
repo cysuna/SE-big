@@ -22,19 +22,19 @@
 
 from django.urls import path, include, re_path
 from rest_framework.routers import DefaultRouter
-from .views import exam_list, do_exam, create_exam,\
+from .views import exam_list, do_exam,\
     select_question_type, create_multiple_choice_question, create_true_false_question, \
     create_single_choice_question, create_short_answer_question, \
     SingleChoiceQuestionViewSet, MultipleChoiceQuestionViewSet, TrueFalseQuestionViewSet, ShortAnswerQuestionViewSet, ExamViewSet
 from .views_auth import login, teacher_login, admin_login
-from .views_teacher import teacher_home, create_question, edit_question, delete_question, create_exam
+from .views_teacher import teacher_home, create_question, edit_question, delete_question
 from .views_admin import (
     admin_home,
     add_teacher, edit_teacher, delete_teacher,
     add_student,
     add_single_choice_question, add_multiple_choice_question, add_true_false_question, add_short_answer_question,
     edit_question, delete_question,
-    add_exam, edit_exam, delete_exam 
+    add_exam, edit_exam, delete_exam, add_exam
 )
 from .views_student import student_home, do_exam, logout_view, exam_result
 from .views_admin import (
@@ -76,13 +76,13 @@ urlpatterns = [
     # path('login/questions/', question_list, name='question_list'),
     # path('do_exam/', do_exam, name='do_exam'), 
     path('do_exam/<int:exam_id>/', do_exam, name='do_exam'),
-    path('create_exam/', create_exam, name='create_exam'),
+    # path('create_exam/', create_exam, name='create_exam'),
     path('exams/', exam_list, name='exam_list'),  # 添加试卷列表的URL
     path('teacher/', teacher_home, name='teacher_home'),
     path('teacher/create_question/', create_question, name='create_question'),
     path('teacher/edit_question/<int:question_id>/<str:question_type>/', edit_question, name='edit_question'),
     path('teacher/delete_question/<int:question_id>/<str:question_type>/', delete_question, name='delete_question'),
-    path('teacher/create_exam/', create_exam, name='create_exam'),
+    path('teacher/create_exam/', add_exam, name='create_exam'),
     path('student/', student_home, name='student_home'),
     path('student/do_exam/', do_exam, name='do_exam'),  # 更新这个路径
     path('student/do_exam/<int:exam_id>/', do_exam, name='do_exam'),

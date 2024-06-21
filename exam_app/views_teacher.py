@@ -131,16 +131,16 @@ def delete_question(request, question_id, question_type):
         return redirect('teacher_home')
     return render(request, 'delete_question.html', {'question': question, 'question_type': question_type})
 
-@login_required
-def create_exam(request):
-    if request.method == 'POST':
-        form = ExamForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('teacher_home')
-    else:
-        form = ExamForm()
-    return render(request, 'create_exam.html', {'form': form})
+# @login_required
+# def create_exam(request):
+#     if request.method == 'POST':
+#         form = ExamForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect('admin_home')
+#     else:
+#         form = ExamForm()
+#     return render(request, 'create_exam.html', {'form': form})
 # from django.shortcuts import render, redirect, get_object_or_404
 # from django.contrib.auth.decorators import login_required
 # from .models import Exam
