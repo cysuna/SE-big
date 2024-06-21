@@ -5,6 +5,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from .models import SingleChoiceQuestion, MultipleChoiceQuestion, TrueFalseQuestion, ShortAnswerQuestion, Exam
 from .forms import ExamForm, SingleChoiceQuestionForm, MultipleChoiceQuestionForm, TrueFalseQuestionForm, ShortAnswerQuestionForm
+from collections import Counter
 
 # 用户注册表单
 class TeacherForm(UserCreationForm):
@@ -232,7 +233,32 @@ def edit_exam(request, exam_id):
     else:
         form = ExamForm(instance=exam)
     
-    return render(request, 'edit_exam.html', {'form': form})
+    # 收集题目类型和难度的数据
+    single_choice_count = exam.single_choice_questions.count()
+    multiple_choice_count = exam.multiple_choice_questions.count()
+    true_false_count = exam.true_false_questions.count()
+    short_answer_count = exam.short_answer_questions.count()
+
+    difficulty_counter = Counter()
+    for question in exam.single_choice_questions.all():
+        difficulty_counter[question.difficulty] += 1
+    for question in exam.multiple_choice_questions.all():
+        difficulty_counter[question.difficulty] += 1
+    for question in exam.true_false_questions.all():
+        difficulty_counter[question.difficulty] += 1
+    for question in exam.short_answer_questions.all():
+        difficulty_counter[question.difficulty] += 1
+
+    context = {
+        'form': form,
+        'single_choice_count': single_choice_count,
+        'multiple_choice_count': multiple_choice_count,
+        'true_false_count': true_false_count,
+        'short_answer_count': short_answer_count,
+        'difficulty_counter': dict(difficulty_counter)  # 转换为字典以便在模板中使用
+    }
+    
+    return render(request, 'edit_exam.html', context)
 
 # 删除试卷
 @login_required

@@ -41,7 +41,6 @@
             border: 1px solid #ccc;
             border-radius: 4px;
         }
-        
         button {
             width: 100%;
             padding: 10px 20px;
@@ -58,9 +57,6 @@
         button:hover {
             background-color: #4cae4c;
         }
-        button:hover {
-            background-color: #4cae4c;
-        }
         .back-button {
             background-color: #d9534f;
         }
@@ -71,7 +67,21 @@
             display: flex;
             flex-direction: column;
         }
+        .charts-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .chart-container {
+            width: 45%;
+        }
+        .chart-container canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="container">
@@ -100,8 +110,60 @@
             </div>
             <button type="submit">保存</button>
         </form>
-        <a href="{% url 'admin_home' %}"><button class="back-button"">回到管理员主页</button></a>
-    </div>
+        <a href="{% url 'admin_home' %}"><button class="back-button">回到管理员主页</button></a>
 
+        <div class="charts-container">
+            <div class="chart-container">
+                <h2>题目类型组成</h2>
+                <canvas id="questionTypeChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>题目难度组成</h2>
+                <canvas id="difficultyChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ctxType = document.getElementById('questionTypeChart').getContext('2d');
+        var questionTypeChart = new Chart(ctxType, {
+            type: 'pie',
+            data: {
+                labels: ['单选题', '多选题', '判断题', '简答题'],
+                datasets: [{
+                    data: [{{ single_choice_count }}, {{ multiple_choice_count }}, {{ true_false_count }}, {{ short_answer_count }}],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+
+        var ctxDifficulty = document.getElementById('difficultyChart').getContext('2d');
+        var difficultyData = {
+            labels: Object.keys({{ difficulty_counter|safe }}),
+            datasets: [{
+                data: Object.values({{ difficulty_counter|safe }}),
+                backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40']
+            }]
+        };
+        var difficultyChart = new Chart(ctxDifficulty, {
+            type: 'pie',
+            data: difficultyData,
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    }
+                }
+            }
+        });
+    </script>
 </body>
 </html>
