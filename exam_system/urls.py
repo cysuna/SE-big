@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin/edit_exam/<int:exam_id>/', edit_exam, name='edit_exam'),
     path('admin/delete_exam/<int:exam_id>/', delete_exam, name='delete_exam'),
     path('login/admin/', admin_home, name='admin_home'),
-    path('admin/choose_question_type/', choose_question_type, name='choose_question_type'),  # Add this line
+    path('admin/choose_question_type/', choose_question_type, name='choose_question_type'), 
      
     path('api/', include('exam_app.urls')),
     path('api-auth/', include('rest_framework.urls')),

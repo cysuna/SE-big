@@ -88,7 +88,7 @@ def create_short_answer_question(request):
     return render(request, 'create_short_answer_question_teacher.html', {'form': form})
 
 @login_required
-def edit_question(request, question_id, question_type):
+def edit_question_teacher(request, question_id, question_type):
     if question_type == 'single_choice':
         question = get_object_or_404(SingleChoiceQuestion, id=question_id, created_by=request.user)
         form_class = SingleChoiceQuestionForm
@@ -111,10 +111,10 @@ def edit_question(request, question_id, question_type):
             return redirect('teacher_home')
     else:
         form = form_class(instance=question)
-    return render(request, 'edit_question.html', {'form': form})
+    return render(request, 'edit_question_teacher.html', {'form': form})
 
 @login_required
-def delete_question(request, question_id, question_type):
+def delete_question_teacher(request, question_id, question_type):
     if question_type == 'single_choice':
         question = get_object_or_404(SingleChoiceQuestion, id=question_id, created_by=request.user)
     elif question_type == 'multiple_choice':
@@ -129,7 +129,7 @@ def delete_question(request, question_id, question_type):
     if request.method == 'POST':
         question.delete()
         return redirect('teacher_home')
-    return render(request, 'delete_question.html', {'question': question, 'question_type': question_type})
+    return render(request, 'delete_question_teacher.html', {'question': question, 'question_type': question_type})
 
 # @login_required
 # def create_exam(request):

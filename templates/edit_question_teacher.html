@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>添加单选题</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+            font-size: 18px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            text-align: left;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            width: 30%;
+            color: #333;
+        }
+        .form-group input, 
+        .form-group textarea, 
+        .form-group select {
+            width: 65%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            height: 24px;
+            font-size: 18px;
+        }
+        .form-group textarea {
+            height: auto;
+            resize: vertical;
+        }
+        button {
+            width: calc(100% - 20px);
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 10px;
+            display: block;
+            text-align: center;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .back-button {
+            background-color: #d9534f;
+        }
+        .back-button:hover {
+            background-color: #c9302c;
+        }
+        a {
+            text-decoration: none;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .radio-group {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+        .radio-group label {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Question</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="button">Save</button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var questionTypeSelect = document.getElementById("id_question_type");
+            var choice1Field = document.getElementById("id_choice1").parentElement;
+            var choice2Field = document.getElementById("id_choice2").parentElement;
+            var choice3Field = document.getElementById("id_choice3").parentElement;
+            var choice4Field = document.getElementById("id_choice4").parentElement;
+            var answerField = document.getElementById("id_answer").parentElement;
+            var correctChoicesField = document.getElementById("id_correct_choices").parentElement;
+
+            function updateFields() {
+                var questionType = questionTypeSelect.value;
+                if (questionType === "single_choice" || questionType === "multiple_choice") {
+                    choice1Field.style.display = "block";
+                    choice2Field.style.display = "block";
+                    choice3Field.style.display = "block";
+                    choice4Field.style.display = "block";
+                    answerField.style.display = "none";
+                    correctChoicesField.style.display = "block";
+                } else if (questionType === "true_false") {
+                    choice1Field.style.display = "none";
+                    choice2Field.style.display = "none";
+                    choice3Field.style.display = "none";
+                    choice4Field.style.display = "none";
+                    answerField.style.display = "block";
+                    correctChoicesField.style.display = "none";
+                } else if (questionType === "short_answer") {
+                    choice1Field.style.display = "none";
+                    choice2Field.style.display = "none";
+                    choice3Field.style.display = "none";
+                    choice4Field.style.display = "none";
+                    answerField.style.display = "block";
+                    correctChoicesField.style.display = "none";
+                }
+            }
+
+            questionTypeSelect.addEventListener("change", updateFields);
+            updateFields();  // 初始化调用以设置字段的初始状态
+        });
+    </script>
+</body>
+</html>

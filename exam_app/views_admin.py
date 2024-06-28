@@ -159,16 +159,16 @@ def add_short_answer_question(request):
 @login_required
 def edit_question(request, question_id, question_type):
     if question_type == 'single_choice':
-        question = get_object_or_404(SingleChoiceQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(SingleChoiceQuestion, id=question_id)
         form_class = SingleChoiceQuestionForm
     elif question_type == 'multiple_choice':
-        question = get_object_or_404(MultipleChoiceQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(MultipleChoiceQuestion, id=question_id)
         form_class = MultipleChoiceQuestionForm
     elif question_type == 'true_false':
-        question = get_object_or_404(TrueFalseQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(TrueFalseQuestion, id=question_id)
         form_class = TrueFalseQuestionForm
     elif question_type == 'short_answer':
-        question = get_object_or_404(ShortAnswerQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(ShortAnswerQuestion, id=question_id)
         form_class = ShortAnswerQuestionForm
     else:
         return redirect('admin_home')
@@ -185,13 +185,13 @@ def edit_question(request, question_id, question_type):
 @login_required
 def delete_question(request, question_id, question_type):
     if question_type == 'single_choice':
-        question = get_object_or_404(SingleChoiceQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(SingleChoiceQuestion, id=question_id)
     elif question_type == 'multiple_choice':
-        question = get_object_or_404(MultipleChoiceQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(MultipleChoiceQuestion, id=question_id)
     elif question_type == 'true_false':
-        question = get_object_or_404(TrueFalseQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(TrueFalseQuestion, id=question_id)
     elif question_type == 'short_answer':
-        question = get_object_or_404(ShortAnswerQuestion, id=question_id, created_by=request.user)
+        question = get_object_or_404(ShortAnswerQuestion, id=question_id)
     else:
         return redirect('admin_home')
 
