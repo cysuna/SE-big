@@ -28,9 +28,24 @@
         .question h3 {
             margin: 0 0 10px;
         }
+        #countdown {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        #countdown h2 {
+            margin: 0;
+        }
+        #countdown canvas {
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
+    <div id="countdown">
+        <h2>倒计时: <span id="time"></span></h2>
+        <canvas id="timerCanvas" width="150" height="150"></canvas>
+    </div>
     <div class="container">
         <h1>考试: {{ exam.title }}</h1>
         <form method="post">
@@ -94,5 +109,40 @@
             <button type="submit">提交</button>
         </form>
     </div>
+
+    <script>
+        const countdownElement = document.getElementById('time');
+        const canvas = document.getElementById('timerCanvas');
+        const ctx = canvas.getContext('2d');
+        const totalTime = 0.1 * 60 * 60; // 2 hours in seconds
+        let timeLeft = totalTime;
+
+        function updateCountdown() {
+            const hours = Math.floor(timeLeft / 3600);
+            const minutes = Math.floor((timeLeft % 3600) / 60);
+            const seconds = timeLeft % 60;
+            countdownElement.textContent = `${hours}h ${minutes}m ${seconds}s`;
+            drawTimer();
+            if (timeLeft > 0) {
+                timeLeft--;
+                setTimeout(updateCountdown, 1000);
+            }
+        }
+
+        function drawTimer() {
+            const remainingRatio = timeLeft / totalTime;
+            const endAngle = Math.PI * 2 * remainingRatio;
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, canvas.height / 2);
+            ctx.arc(canvas.width / 2, canvas.height / 2, canvas.width / 2, -Math.PI / 2, endAngle - Math.PI / 2, true);
+            ctx.lineTo(canvas.width / 2, canvas.height / 2);
+            ctx.fillStyle = '#f00';
+            ctx.fill();
+        }
+
+        updateCountdown();
+    </script>
 </body>
 </html>
