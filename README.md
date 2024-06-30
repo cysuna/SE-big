@@ -14,7 +14,9 @@ python3 manage.py runserver
 npm run serve
 ```
 
-在浏览器中访问 http://localhost:8000进入主页
+在浏览器中访问 http://localhost:8000
+
+进入主页
 
 ## 重建数据库
 ```bash
